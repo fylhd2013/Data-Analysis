@@ -77,8 +77,22 @@
 
 SSH推送，秘钥生成步骤：
 - 通过Git 右键-`Git Bash Here`
-- 命令行输入`ssh -keygen -t rsa`
+- 命令行输入`ssh-keygen -t rsa -C"your_email@example.com"`，邮箱为你注册GitHub时的邮箱
+- 上面这条在实际操作中，命令行输入`ssh-keygen -t rsa`也可以
 - 生成的秘钥，在当前电脑用户里，C盘-users-电脑用户名-`.ssh`文件
+
+
+**创建秘钥可能与遇到的问题**  
+- `$cd ~/. ssh/`先检查本机的SSH秘钥。如果提示：`No such file or directory` 说明你是第一次使用Git  
+- 如果不是第一次使用，请执行下面的操作，清理原有SSH密钥。  
+    `$ mkdir key_backup`  
+    `$ cp id_rsa* key_backup`  
+    `$ rm id_rsa*`
+- 生成新的密钥：
+    `ssh-keygen –t rsa –C “defnngj@gmai.com” `
+期间你可以手动创建一个`.ssh`文件(`mkdir ~/.ssh`)，一般会提示你新建在/c/users/fyl/.ssh/id_rsa，注意这里最后那个id_rsa不是文件夹的名称，可以是新建的txt文档，名字是`id_rsa.txt`
+    
+
 
 复制公钥，打开GitHub网站，点击用户头像-`settings`-`SSH and GPG keys`-`New SSH key`，把公钥粘贴在这里，建立GitHub网站和本地仓库的连接
 
